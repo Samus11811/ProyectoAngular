@@ -1,0 +1,92 @@
+<div class="form-group"  style="background-image: linear-gradient(transparent,#2e2e2e), url(assets/slider-background.png); background-repeat: no-repeat;background-size: cover;background-position: center top;">
+  <div class="d-flex justify-content-center flex-wrap  pt-5">
+    <div class="me-3"><img class="rounded-3" src="assets/{{Portada}}"></div>
+    <div class="ms-3 d-flex flex-column bg-secondary rounded-3 p-4">
+      <h2 class="text-center text-light mx-2">{{Nombre}}</h2>
+      <div class="text-center text-light mb-2"><p class="fs-4"><img class="bg-primary rounded-3 p-2 me-2" src="assets/{{Plataforma}}.png">{{Plataforma}} | {{Stock >= 1 ? 'En Stock' : 'Sin Stock :C'}}</p></div>
+      <div class="d-flex justify-content-center">
+      <select class="rounded-3 p-2 mx-md-3"  name="plataforma" id="plataforma" [(ngModel)]="valorElegirPlataforma" (change)="CambiarProductoPlataforma()">
+        <option      *ngFor="
+        let plataforma of elegirPlataforma;
+        index as i;
+        let iControl = index
+      " value="{{plataforma.id}}">{{plataforma.Plataforma}}</option>
+      </select>
+      <select class="rounded-3 p-2 mx-md-3" name="plataforma" [(ngModel)]="valorElegirEdicion" (change)="CambiarProductoEdicion()" id="plataforma">
+        <ng-container *ngIf="DLCde != null; then dlc; else estandar">
+        </ng-container>
+        <ng-template #dlc>
+          <option value="{{id}}">{{Nombre}}</option>
+          <option value="{{DLCde}}">Edicion Estandar</option>
+          <option       *ngFor="
+          let edicion of ediciones;
+          index as i;
+          let iControl = index
+        " value="{{edicion.id}}">{{edicion.nombre}}</option>
+        </ng-template>
+        <ng-template #estandar>
+          <option value="{{id}}">Edicion Estandar</option>
+          <option       *ngFor="
+          let edicion of ediciones;
+          index as i;
+          let iControl = index
+        " value="{{edicion.id}}">{{edicion.nombre}}</option>
+        </ng-template>
+
+
+      </select>
+      </div>
+      <div><p class="text-center text-light"><span class="text-decoration-line-through">{{Precio/Conversion | number : '1.2-2'}}</span> <span class="text-warning"> -{{Descuento * 100}}%  </span> <span class="fs-1 ps-2">{{  ((Precio-(Precio*Descuento))/Conversion) | currency:Moneda}}</span></p></div>
+      <div class="d-flex justify-content-center"><img (click)="AgregarProductoCesta()" class="rounded-3 p-2 me-2" style="background-color: #F55D07;" src="assets/add_carrito.png">
+        <button class="btn btn-lg ms-2 text-light" style="background-color: #F55D07;" (click)="ComprarProducto()">Comprar Ahora</button>
+            </div>
+    </div>
+  </div>
+<div class="d-flex justify-content-center  text-light mt-5">
+  <div class="w-50">
+    <h2>Acerca del juego</h2>
+    <p class="text-break text-wrap">{{Sintaxis}}</p>
+  </div>
+  <div class="w-25 ms-5">
+    <h5>Desarollador: {{Desarollador}}</h5>
+    <h5>Distribuidor: {{Distribuidor}}</h5>
+    <div>
+      <span>Generos:</span>
+      <button *ngFor="
+      let genero of generos;
+      index as i;
+      let iControl = index" class="btn ms-2 text-light bg-secondary">{{genero.Genero}}</button>
+    </div>
+
+  </div>
+</div>
+<div class="container text-light">
+  <div class="row">
+    <div class="col-12">
+     <h2 class="text-center">Visuales</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <iframe width="1280" height="720" [src]="Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="row pb-5 pt-4">
+    <div class="col-6">
+      <img class="img-fluid rounded-3" src="assets/{{imagen1}}">
+    </div>
+    <div class="col-6">
+      <div class="row pb-3">
+        <div class="col-6"><img class="img-fluid rounded-3" src="assets/{{imagen2}}"></div>
+        <div class="col-6"><img class="img-fluid rounded-3" src="assets/{{imagen3}}"></div>
+      </div>
+      <div class="row">
+        <div class="col-6"><img class="img-fluid rounded-3" src="assets/{{imagen4}}"></div>
+        <div class="col-6"><img class="img-fluid rounded-3" src="assets/{{imagen5}}"></div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</div>
+

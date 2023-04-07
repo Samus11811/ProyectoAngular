@@ -1,0 +1,117 @@
+
+<div id="busqueda-videojuegos" class="min-vh-100">
+  <form [formGroup]="formularioDeBusqueda">
+  <div class="d-flex justify-content-center mb-5 pt-5 flex-wrap">
+    <select class="rounded-3 p-2 mx-md-5" formControlName="plataforma" name="plataforma" id="plataforma">
+      <option value="" [selected]="!this.plataforma">Plataforma</option>
+      <option value="pc">PC</option>
+      <option value="nintendo">Nintendo</option>
+      <option value="xbox">Xbox</option>
+      <option value="playstation">PlayStation</option>
+    </select>
+    <select class="rounded-3 p-2 mx-md-5 " formControlName="genero" name="generos" id="generos">
+      <option [selected]="true">Generos</option>
+      <option value="plataformas">Plataformas</option>
+      <option value="accion">Acción</option>
+      <option value="aventura">Aventura</option>
+      <option value="shooter">Shooter</option>
+      <option value="exploracion">Exploración</option>
+      <option value="terror">Terror</option>
+      <option value="musical">Musical</option>
+      <option value="rpg">RPG</option>
+
+    </select>
+    <select class="rounded-3 p-2 mx-md-5" formControlName="ordenar" name="ordenar" id="ordenar">
+      <option [selected]="true">Ordenar:</option>
+      <option value="asc">Ascendente</option>
+      <option value="desc">Descendente</option>
+
+    </select>
+  </div>
+  <div class="d-flex justify-content-center flex-wrap">
+    <div class="mx-4">
+      <p>Entre <input class="input-number rounded-3" formControlName="min" type="number" min="0" max="999"> y <input class="input-number rounded-3" formControlName="max" type="number"  min="0" max="999"></p>
+    </div>
+    <div>
+      <input type="checkbox" class="btn-check" id="btn-check-outlined" (change)="stock($event)" formControlName="stock" autocomplete="off" >
+  <label class="btn btn-outline-warning ms-md-3 me-md-4 p-3" for="btn-check-outlined">En Stock</label>
+    </div>
+    <select class="rounded-3 p-2 mx-4" formControlName="tipo" name="tipo" id="tipo">
+      <option [selected]="true">Tipo:</option>
+      <option value="videojuego">Videojuego</option>
+      <option value="dlc">DLC</option>
+      <option value="especial">Ediciones especiales</option>
+    </select>
+    <button type="button" (click)="buscar()" class="btn btn-success ms-md-5 p-3">Buscar</button>
+
+  </div>
+</form>
+  <div class="d-flex justify-content-center align-middle flex-wrap-reverse">
+    <div
+      *ngFor="
+        let Videojuego of Videojuegos.slice(0, 3);
+        index as i;
+        let iControl = index
+      " class="mx-4"
+    >
+  <div class="position-relative mx-5 mt-5">
+    <a [routerLink]="links ? ['../producto/',Videojuego.Id] : ['../../producto/',Videojuego.Id]"><img class="rounded-3 " src="assets/{{Videojuego.Miniatura}}"></a>
+    <p  *ngIf="Videojuego.Descuento*100 != 0" class="fs-3 rounded-1 text-light bg-success position-absolute bottom-0 end-0 px-2 py-1 mb-0">{{Videojuego.Descuento*100}}%</p>
+    <img class="fs-3 rounded-1 text-light bg-primary position-absolute bottom-0 start-0 px-3 py-2" src="assets/{{Videojuego.Plataforma}}.png">
+    </div>
+      <div class="d-flex justify-content-around">
+        <div class="text-light">
+          <p>{{ Videojuego.Nombre }}</p>
+        </div>
+        <ng-container *ngIf="Videojuego.Stock >= 1; then MostrarPrecio; else sinStock">
+        </ng-container>
+
+        <ng-template #MostrarPrecio>
+        <div class="text-light">
+          <p>{{  ((Videojuego.Precio-(Videojuego.Precio*Videojuego.Descuento))/Conversion) | currency:Moneda}}</p>
+        </div>
+        </ng-template>
+
+        <ng-template #sinStock>
+          <div>
+            <p class="text-warning"> Sin Stock :C</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center align-middle flex-wrap-reverse">
+    <div
+      *ngFor="
+        let Videojuego of Videojuegos.slice(3, 6);
+        index as i;
+        let iControl = index
+      " class="mx-4"
+    >
+    <div class="position-relative mx-5 mt-5">
+      <a [routerLink]="links ? ['../producto/',Videojuego.Id] : ['../../producto/',Videojuego.Id]"><img class="rounded-3" src="assets/{{Videojuego.Miniatura}}"></a>
+      <p *ngIf="Videojuego.Descuento*100 != 0" class="fs-3 rounded-1 text-light bg-success position-absolute bottom-0 end-0 px-2 py-1 mb-0">{{Videojuego.Descuento*100}}%</p>
+      <img class="fs-3 rounded-1 text-light bg-primary position-absolute bottom-0 start-0 px-3 py-2" src="assets/{{Videojuego.Plataforma}}.png">
+      </div>
+      <div class="d-flex justify-content-around">
+        <div class="text-light">
+          <p>{{ Videojuego.Nombre }}</p>
+        </div>
+        <ng-container *ngIf="Videojuego.Stock >= 1; then MostrarPrecio; else sinStock">
+        </ng-container>
+
+        <ng-template #MostrarPrecio>
+        <div class="text-light">
+          <p>{{  ((Videojuego.Precio-(Videojuego.Precio*Videojuego.Descuento))/Conversion) | currency:Moneda}}</p>
+        </div>
+        </ng-template>
+
+        <ng-template #sinStock>
+          <div>
+            <p class="text-warning"> Sin Stock :C</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

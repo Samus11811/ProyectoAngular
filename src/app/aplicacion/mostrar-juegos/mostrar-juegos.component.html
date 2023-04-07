@@ -1,0 +1,72 @@
+
+<div id="div-mostrar-juegos" *ngIf="showContent">
+  <h1   class="text-light text-center">Ultimos lanzamientos: </h1>
+  <div class="d-flex justify-content-center align-middle flex-wrap-reverse">
+    <div
+      *ngFor="
+        let Videojuego of Videojuegos.slice(0, 3);
+        index as i;
+        let iControl = index
+      " class="mx-4"
+    >
+  <div class="position-relative mx-5">
+    <a routerLink="../producto/{{Videojuego.Id}}"><img class="rounded-3 " src="assets/{{Videojuego.Miniatura}}"></a>
+    <p  *ngIf="Videojuego.Descuento*100 != 0" class="fs-3 rounded-1 text-light bg-success position-absolute bottom-0 end-0 px-2 py-1 mb-0">{{Videojuego.Descuento*100}}%</p>
+    <img class="fs-3 rounded-1 text-light bg-primary position-absolute bottom-0 start-0 px-3 py-2" src="assets/{{Videojuego.Plataforma}}.png">
+    </div>
+      <div class="d-flex justify-content-around">
+        <div class="text-light">
+          <p>{{ Videojuego.Nombre }}</p>
+        </div>
+        <ng-container *ngIf="Videojuego.Stock >= 1; then MostrarPrecio; else sinStock">
+        </ng-container>
+
+        <ng-template #MostrarPrecio>
+        <div class="text-light">
+          <p>{{  ((Videojuego.Precio-(Videojuego.Precio*Videojuego.Descuento))/Conversion) | currency:Moneda}}</p>
+        </div>
+        </ng-template>
+
+        <ng-template #sinStock>
+          <div>
+            <p class="text-warning"> Sin Stock :C</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center align-middle flex-wrap-reverse">
+    <div
+      *ngFor="
+        let Videojuego of Videojuegos.slice(3, 6);
+        index as i;
+        let iControl = index
+      " class="mx-4"
+    >
+    <div class="position-relative mx-5">
+      <a routerLink="../producto/{{Videojuego.Id}}"><img class="rounded-3" src="assets/{{Videojuego.Miniatura}}"></a>
+      <p *ngIf="Videojuego.Descuento*100 != 0" class="fs-3 rounded-1 text-light bg-success position-absolute bottom-0 end-0 px-2 py-1 mb-0">{{Videojuego.Descuento*100}}%</p>
+      <img class="fs-3 rounded-1 text-light bg-primary position-absolute bottom-0 start-0 px-3 py-2" src="assets/{{Videojuego.Plataforma}}.png">
+      </div>
+      <div class="d-flex justify-content-around">
+        <div class="text-light">
+          <p>{{ Videojuego.Nombre }}</p>
+        </div>
+        <ng-container *ngIf="Videojuego.Stock >= 1; then MostrarPrecio; else sinStock">
+        </ng-container>
+
+        <ng-template #MostrarPrecio>
+        <div class="text-light">
+          <p>{{  ((Videojuego.Precio-(Videojuego.Precio*Videojuego.Descuento))/Conversion) | currency:Moneda}}</p>
+        </div>
+        </ng-template>
+
+        <ng-template #sinStock>
+          <div>
+            <p class="text-warning"> Sin Stock :C</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

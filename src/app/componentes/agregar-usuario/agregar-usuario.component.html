@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-header">
+    Agregar usuario
+  </div>
+  <div class="card-body">
+    <form ngNativeValidate [formGroup]="formularioDeUsuarios" (ngSubmit)="enviarDatos()">
+      <div class="mb-3">
+        <label for="" class="form-label">Nombre:</label>
+        <input type="text"
+          class="form-control" required name="nombre" formControlName="nombre" id="" aria-describedby="helpId" placeholder="Escriba su Nombre">
+        <div class="text-danger" *ngIf="formularioDeUsuarios.get('nombre')!.invalid && formularioDeUsuarios.get('nombre')!.dirty">
+          <div *ngIf="formularioDeUsuarios.get('nombre')!.hasError('required')">El nombre es obligatorio</div>
+        </div>
+        <label for="" class="form-label">Correo:</label>
+        <input type="email"
+          class="form-control" name="email" required formControlName="email" id="" aria-describedby="helpId" placeholder="Escribe tu email">
+          <div class="text-danger" *ngIf="formularioDeUsuarios.get('email')!.invalid && formularioDeUsuarios.get('email')!.dirty">
+            <div *ngIf="formularioDeUsuarios.get('email')!.hasError('required')">El email es obligatorio</div>
+          </div>
+        <label for="" class="form-label">Contraseña:</label>
+        <input type="password"
+          class="form-control" name="contra" required  formControlName="contra" id="" aria-describedby="helpId" placeholder="Escriba su contraseña">
+          <div class="text-danger" *ngIf="formularioDeUsuarios.get('contra')!.invalid && formularioDeUsuarios.get('contra')!.dirty">
+            <div *ngIf="formularioDeUsuarios.get('contra')!.hasError('required')">La contraseña es obligatoria</div>
+            <div *ngIf="formularioDeUsuarios.get('contra')!.hasError('minlength')">La contraseña tiene que ser mas de 4 letras</div>
+
+          </div>
+      </div>
+      <div class="btn-group" role="group" aria-label="Button group name">
+        <button type="submit" class="btn btn-success">Agregar</button>
+        <button type="button" routerLink="/listar-usuarios/" class="btn btn-danger">Cancelar</button>
+
+      </div>
+    </form>
+  </div>
+
+</div>

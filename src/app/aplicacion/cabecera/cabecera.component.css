@@ -1,0 +1,19 @@
+nav, .modal-content {
+  background-color: #1B1B1B;
+}
+
+a {
+  cursor: pointer;
+}
+
+.modal-header, .modal-footer {
+  border: 0px;
+}
+
+.modal-content {
+  border: 4px solid #ff993b;
+}
+
+.btn-close {
+  background-color: white;
+}

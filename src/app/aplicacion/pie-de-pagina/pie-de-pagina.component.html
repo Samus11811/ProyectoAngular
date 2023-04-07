@@ -1,0 +1,23 @@
+<footer>
+    <div class="text-light d-flex justify-content-center pt-4 pb-3 flex-wrap">
+      <a   class="link-light mx-5 text-decoration-none">FAQ</a>
+      <a  class="link-light mx-5 text-decoration-none">Contactanos</a>
+      <a  class="link-light mx-5 text-decoration-none">Politica de privacidad</a>
+      <a   class="link-light mx-5 text-decoration-none">Terminos y condiciones</a>
+      <a class="link-light mx-4 text-decoration-none"><img src="assets/Twitch.png"></a>
+      <a class="link-light mx-4 text-decoration-none"><img src="assets/Youtube.png"></a>
+      <a class="link-light mx-4 text-decoration-none"><img src="assets/Twitter.png"></a>
+      <a class="link-light mx-4 text-decoration-none"><img src="assets/Instagram.png"></a>
+    </div>
+    <div class="text-light d-flex justify-content-evenly pb-2">
+      <p  >Disclaimer: i don`t own any rights about any image or game in this website.</p>
+      <div class="d-flex position-relative">
+        <img class="position-absolute top-50 start-0 pe-4 pb-3 translate-middle" src="assets/localizacion.png">
+      <p  >Español | </p>
+      <select class="mb-4" (change)="cambiarMoneda()" [(ngModel)]="Moneda">
+        <option *ngFor="let Conversion of Conversiones;" value="{{Conversion.Moneda}}">{{Conversion.Moneda}} - {{Conversion.Simbolo}}</option>
+      </select>
+
+      </div>
+    </div>
+</footer>

@@ -1,0 +1,28 @@
+<div id="Container-login" class="justify-content-around min-vh-100" style="background-image: url(assets/fondo_2.png); background-repeat: no-repeat;background-size: cover;background-position: center top;">
+  <div>
+        <div id="fondo-div" class="text-center form-signin p-5">
+            <form ngNativeValidate [formGroup]="formularioDeUsuario" (ngSubmit)="enviarDatos()">
+                <h1 class="h3 mb-3 fw-normal text-light">Registrate</h1>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="nombre"  formControlName="nombre" id="floatingInput" required placeholder="usuario">
+                    <label for="floatingInput">Usuario</label>
+                </div>
+                <div class="form-floating mt-1 mb-3">
+                    <input type="password" class="form-control" name="contra"  formControlName="contra" id="floatingPassword" required placeholder="contraseña">
+                    <label for="floatingPassword">Contraseña</label>
+                </div>
+
+                <div class="form-floating mt-1 mb-3">
+                  <input type="email" class="form-control" name="email"  id="floatingEmail" formControlName="email" required placeholder="ejemplo@ejemplo.es">
+                  <label for="floatingEmail">Email</label>
+              </div>
+                <button class="w-100 btn btn-lg btn-success" type="submit">Aceptar</button>
+                <button class="w-100 btn btn-lg btn-dark mt-2" (click)="irLogin()" type="submit">¿Ya tienes cuenta?</button>
+            </form>
+
+        </div>
+      </div>
+      <div>
+      </div>
+    </div>

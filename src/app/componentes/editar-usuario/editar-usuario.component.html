@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-header">
+    Editar usuario
+  </div>
+  <div class="card-body">
+    <form ngNativeValidate [formGroup]="formularioDeUsuarios" (ngSubmit)="ActualizarDatos()" >
+      <div class="mb-3">
+        <label for="" class="form-label">Nombre:</label>
+        <input type="text"
+          class="form-control" name="" required formControlName="nombre" id="" aria-describedby="helpId" placeholder="Escriba su Nombre">
+          <div class="text-danger" *ngIf="formularioDeUsuarios.get('nombre')!.invalid && formularioDeUsuarios.get('nombre')!.dirty">
+            <div *ngIf="formularioDeUsuarios.get('nombre')!.hasError('required')">El nombre es obligatorio</div>
+          </div>
+        <label for="" class="form-label">Correo:</label>
+        <input type="email"
+          class="form-control" name="" required formControlName="email"  id="" aria-describedby="helpId" placeholder="Escribe tu Correo">
+          <div class="text-danger" *ngIf="formularioDeUsuarios.get('email')!.invalid && formularioDeUsuarios.get('email')!.dirty">
+            <div *ngIf="formularioDeUsuarios.get('email')!.hasError('required')">El email es obligatorio</div>
+          </div>
+      </div>
+      <div class="btn-group" role="group" aria-label="Button group name">
+        <button type="submit" class="btn btn-success">Modificar</button>
+        <button type="button" routerLink="/listar-usuarios/" class="btn btn-danger">Cancelar</button>
+
+      </div>
+    </form>
+  </div>
+
+</div>

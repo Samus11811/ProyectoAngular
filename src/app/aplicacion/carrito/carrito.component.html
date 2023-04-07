@@ -1,0 +1,39 @@
+<div id="Container-login" class="justify-content-around min-vh-100" style="background-image: linear-gradient(transparent,#2e2e2e), url(assets/slider-background.png); background-repeat: no-repeat;background-size: cover;background-position: center top;">
+  <div class="d-flex justify-content-center text-light pt-5">
+    <div class="d-flex flex-column me-5 fondo p-5 rounded-3">
+      <h2>Cesta</h2>
+      <div       *ngFor="
+      let elemento of carrito;
+      index as i;
+      let iControl = index
+    " class="fondo2 d-flex rounded-3 p-3 my-2">
+        <img height="150px" width="150px" class="rounded-3 me-3" src="assets/{{elemento.videojuego.Miniatura}}">
+        <div class="d-flex flex-column">
+          <h3>{{elemento.nombre}}</h3>
+            <p>{{elemento.videojuego.Plataforma}}
+            <select [value]="elemento.cantidad" (change)="refresh(elemento.nombre, $event)" class="ms-5 me-2 rounded-3 p-2">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+            </select>
+             {{((elemento.videojuego.Precio-(elemento.videojuego.Precio*elemento.videojuego.Descuento))/Conversion)*elemento.cantidad | currency:Moneda}}</p>
+             <img class="mt-4" height="24px" width="24px" (click)="borrarRegistro(iControl)" src="assets/Waste.png">
+        </div>
+      </div>
+
+    </div>
+    <div class="d-flex flex-column ms-5 fondo p-5 rounded-3 align-self-start">
+        <h3 class="my-2">Precio oficial: {{valorTotal | currency:Moneda}}</h3>
+        <h3 class="my-2">Descuento: <span class="text-decoration-line-through"> {{valorDescontado | currency:Moneda}}</span> </h3>
+        <h3 class="my-2">subtotal: {{valorsubTotal | currency:Moneda}}</h3>
+        <button class="btn btn-warning px-5"> Proceder con el pago ></button>
+    </div>
+  </div>
+</div>
+

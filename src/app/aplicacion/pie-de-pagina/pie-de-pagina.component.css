@@ -1,0 +1,16 @@
+footer {
+  background-color: #1B1B1B;
+}
+
+select {
+  background: transparent;
+  color: white;
+  border: none;
+  padding: 0px;
+}
+
+option {
+  background: #1B1B1B;
+  color: white;
+  border-radius: 25px;
+}

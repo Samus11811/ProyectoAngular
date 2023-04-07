@@ -1,0 +1,18 @@
+#busqueda-videojuegos {
+  background-color: #2e2e2e;
+}
+
+p {
+  color: #fff;
+}
+
+input, select {
+  width: 8em;
+  color: #fff;
+  background-color: #535353;
+  border: 1px solid #F55D07;
+}
+
+.input-number {
+  width: 4em;
+}
