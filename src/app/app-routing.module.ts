@@ -13,6 +13,7 @@ import { AuthGuardService } from './servicio/auth-guard/auth-guard.service';
 import { BusquedaComponent } from './aplicacion/busqueda/busqueda.component';
 import { ProductoComponent } from './aplicacion/producto/producto.component';
 import { CarritoComponent } from './aplicacion/carrito/carrito.component';
+import { ProcesarCompraComponent } from './aplicacion/procesar-compra/procesar-compra.component';
 const routes: Routes = [
   //acceder a ruta por defecto, redirije a agregar usuario
   {path: '', pathMatch: 'full', redirectTo: 'pagina'},
@@ -36,6 +37,7 @@ children: [{path: '', pathMatch: 'full', redirectTo: 'landing-page'},
 {path: 'producto', component: LandingPageComponent},
 {path: 'producto/:id', component: ProductoComponent},
 {path: 'carrito', component: CarritoComponent},
+{path: 'procesar_compra', component: ProcesarCompraComponent}
 ]}
 
 ];

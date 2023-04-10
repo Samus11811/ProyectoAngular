@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -14,14 +15,20 @@ Conversion:any = (this.cookie.get('Currency')) ? JSON.parse(this.cookie.get('Cur
 valorTotal:any;
 valorDescontado:any;
 valorsubTotal:any;
+disable:any = false;
   constructor(private cookie:CookieService,
-    private toast: HotToastService) { }
+    private toast: HotToastService,
+    private router:Router) { }
 
   ngOnInit(): void {
 
    this.carrito = JSON.parse(sessionStorage.getItem('carrito')!);
-   this.calcularPrecio();
-   console.log(this.carrito);
+   if(this.carrito) {
+    this.calcularPrecio();
+
+   } else {
+    this.disable = true;
+   }
   }
 
   refresh(Nombre:any, evento:Event) {
@@ -47,11 +54,24 @@ valorsubTotal:any;
     this.valorDescontado = 0;
     this.valorsubTotal = 0;
     for(let elemento of this.carrito){
-      this.valorTotal=  this.valorTotal+(Number(elemento.videojuego.Precio)) * elemento.cantidad;
-      this.valorDescontado= this.valorDescontado+((Number(elemento.videojuego.Precio)) * (Number(elemento.videojuego.Descuento))) * elemento.cantidad;
+      this.valorTotal=  this.valorTotal+((Number(elemento.videojuego.Precio)) * elemento.cantidad)/this.Conversion;
+      this.valorDescontado= this.valorDescontado+(((Number(elemento.videojuego.Precio)) * (Number(elemento.videojuego.Descuento))) * elemento.cantidad)/this.Conversion;
 
     }
     this.valorsubTotal= this.valorTotal-this.valorDescontado;
+    sessionStorage.setItem('pagar', this.valorsubTotal);
+  }
+  siguientePaso() {
+    if(this.cookie.get('Usuario')) {
+      if(this.carrito.length) {
+        this.router.navigate(['./pagina/procesar_compra']);
+      } else {
+        this.router.navigate(['../pagina']);
+      }
+    } else {
+      this.router.navigate(['../pagina/login']);
+    }
+
   }
 
 }

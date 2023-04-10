@@ -1,1 +1,23 @@
-<p>procesar-compra works!</p>
+<div id="Container-login" class="justify-content-around min-vh-100" style="background-image: linear-gradient(transparent,#2e2e2e), url(assets/slider-background.png); background-repeat: no-repeat;background-size: cover;background-position: center top;">
+  <div class="d-flex justify-content-center text-light pt-5">
+    <div class="d-flex flex-column me-5 fondo p-5 rounded-3">
+      <h2>Metodos de pago:</h2>
+
+<ngx-paypal class="mt-5"  [config]="payPalConfig">
+</ngx-paypal>
+
+
+
+
+
+    </div>
+    <div class="d-flex flex-column ms-5 fondo p-5 rounded-3 align-self-start">
+      <div class="fondo2 rounded-3 p-3 my-2">
+        <h6>elementos:</h6>
+        <p  *ngFor="let elemento of carrito;"> {{elemento.nombre}} - Cantidad: {{elemento.cantidad}} - {{((elemento.videojuego.Precio-(elemento.videojuego.Precio * elemento.videojuego.Descuento)) * elemento.cantidad)/Conversion | currency:Moneda}}</p>
+      </div>
+
+        <h3 class="my-2">Total a pagar: <span class="text-warning">{{this.valorsubTotal | currency:Moneda  }} </span></h3>
+    </div>
+  </div>
+</div>

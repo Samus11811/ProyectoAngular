@@ -28,6 +28,7 @@ import { BusquedaComponent } from './aplicacion/busqueda/busqueda.component';
 import { ProductoComponent } from './aplicacion/producto/producto.component';
 import { CarritoComponent } from './aplicacion/carrito/carrito.component';
 import { ProcesarCompraComponent } from './aplicacion/procesar-compra/procesar-compra.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 
@@ -53,12 +54,13 @@ import { ProcesarCompraComponent } from './aplicacion/procesar-compra/procesar-c
     ProcesarCompraComponent
   ],
   imports: [
+    NgxPayPalModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HotToastModule.forRoot({position: 'bottom-center', style: {
+    HotToastModule.forRoot({position: 'bottom-center',  style: {
       border: '1px solid #F55D07',
       padding: '16px',
       color: 'white',

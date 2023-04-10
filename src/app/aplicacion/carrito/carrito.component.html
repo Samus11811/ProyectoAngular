@@ -29,10 +29,10 @@
 
     </div>
     <div class="d-flex flex-column ms-5 fondo p-5 rounded-3 align-self-start">
-        <h3 class="my-2">Precio oficial: {{valorTotal | currency:Moneda}}</h3>
+        <h3 class="my-2">Precio oficial: {{valorTotal | currency:Moneda }}</h3>
         <h3 class="my-2">Descuento: <span class="text-decoration-line-through"> {{valorDescontado | currency:Moneda}}</span> </h3>
         <h3 class="my-2">subtotal: {{valorsubTotal | currency:Moneda}}</h3>
-        <button class="btn btn-warning px-5"> Proceder con el pago ></button>
+        <a class="btn btn-warning px-5"  [ngClass]="{'disabled': this.disable}"  (click)="siguientePaso()"> Proceder con el pago ></a>
     </div>
   </div>
 </div>

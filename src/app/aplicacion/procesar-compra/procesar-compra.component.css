@@ -1,0 +1,16 @@
+.fondo {
+  background-color: rgba(99, 99, 99, 0.7);
+}
+input,select {
+  background: #1B1B1B;
+  color: white;
+}
+input:focus {
+  background: #1B1B1B;
+  color: white;
+  border: 1px solid #ff993b;
+}
+
+.fondo2 {
+  background-color: rgba(38, 38, 38, 0.8)
+}

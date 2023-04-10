@@ -20,6 +20,7 @@ busqueda:any;
               private router: Router) { }
 
   ngOnInit(): void {
+
   }
 
   onFileSelected(event:any) {
